@@ -5,6 +5,13 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+import './vant/vant.js'
+import 'vant/lib/icon/local.css'
+
+//axios
+import api from './api'
+Vue.prototype.$http = api
+
 new Vue({
   router,
   store,

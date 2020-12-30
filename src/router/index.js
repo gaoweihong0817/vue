@@ -4,20 +4,61 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
+const routes = [{
+  path: '/Home',
+  name: 'Home',
+  component: Home,
+  children: [{
+    path: '/index',
+    name: 'index',
+    component: () => import('../components/tabBer/index.vue')
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/course',
+    name: 'course',
+    component: () => import('../components/tabBer/course.vue')
+  }, {
+    path: '/practice',
+    name: 'practice',
+    component: () => import('../components/tabBer/practice.vue')
+  }, {
+    path: '/record',
+    name: 'record',
+    component: () => import('../components/tabBer/record.vue')
+  }, {
+    path: '/user',
+    name: 'user',
+    component: () => import('../components/tabBer/user.vue')
   }
+  ]
+  // beforeEnter: (to, from, next) => {
+  //   if () {
+  //     next()
+  //   } else {
+  //     next('/login')
+  //   }
+  // }
+}, {
+  path: '/login',
+  name: 'login',
+  component: () => import('../components/Login/login.vue')
+}, {
+  path: '/sms-login',
+  name: 'sms-login',
+  component: () => import('../components/Login/sms-login.vue')
+} //, {
+//   path: '/',
+//   redirect: 'login'
+//  },
+, {
+  path: '/detail/:id',
+  name: 'detail',
+  component: () => import('../components/detail/detail.vue'),
+  meta: {
+    title: '课程详情页'
+  }
+}
+
 ]
 
 const router = new VueRouter({
